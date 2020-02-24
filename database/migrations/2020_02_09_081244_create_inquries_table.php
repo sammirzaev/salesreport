@@ -28,7 +28,7 @@ class CreateInquriesTable extends Migration
             $table->string('phnumber');
             $table->string('subject')->nullable();
             $table->text('description');
-            $table->text('comment')->nullable();
+            $table->text('seller')->nullable();
             $table->timestamps();
         });
     }

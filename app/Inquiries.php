@@ -20,7 +20,7 @@ class Inquiries extends Model
         'phnumber',
         'subject',
         'description',
-        'comment',
+        'seller',
     ];
 
     public function status(){

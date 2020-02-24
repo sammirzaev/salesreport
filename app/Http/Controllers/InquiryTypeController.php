@@ -89,8 +89,8 @@ class InquiryTypeController extends Controller
         $chart->title('Monthly Inquiries');
         $chart->loaderColor('#3F3A60');
         $chart->dataset('Inquiries Monthly', 'bar', $monthly_cat_count_array)
-            ->color("rgb(255, 99, 132)")
-            ->backgroundcolor("rgb(255, 99, 132)")
+            ->color(['#ff00a9', '#fdf77c', '#ad2de7', '#7fffd4', '#ff7373', '#ffc0cb', '#ff7373', '#594ca5', '#ffb2e5', '#98a54c', '#4c98a5', '#faebd7'])
+            ->backgroundcolor(['#ff00a9', '#fdf77c', '#ad2de7', '#7fffd4', '#ff7373', '#ffc0cb', '#ff7373', '#594ca5', '#ffb2e5', '#98a54c', '#4c98a5', '#faebd7'])
             ->fill(true)
             ->linetension(0.3);
         $chart->displayLegend('Inquiries Weekly');
@@ -100,8 +100,8 @@ class InquiryTypeController extends Controller
         $chartWeeks->title('Weekly Inquiries');
         $chartWeeks->loaderColor('#3F3A60');
         $chartWeeks->dataset('Inquiries Weekly', 'line', $weekly_cat_count_array)
-            ->color("rgb(255, 99, 132)")
-            ->backgroundcolor("rgb(255, 99, 132)")
+            ->color('#ff7373')
+            ->backgroundcolor('#ffb2e5')
             ->fill(false)
             ->linetension(0.3);
         $chartWeeks->displayLegend('Inquiries Weekly');

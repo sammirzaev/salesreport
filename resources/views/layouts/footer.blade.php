@@ -5,7 +5,7 @@
         </ul>
     </div>
 </footer>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('assets/theme-assets/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
 <!-- BEGIN VENDOR JS-->
@@ -115,7 +115,57 @@
     //=====================End Status Page============================
     //=====================Inquiry Page===============================
 
+    $('#editInquiry').on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget);
+        var inquiry_id = button.data('inquiryid');
+        var date = button.data('date');
+        var inquirytype = button.data('type');
+        var company = button.data('company');
+        var industry = button.data('industry');
+        var address = button.data('address');
+        var website = button.data('website');
+        var fullName = button.data('fullname');
+        var position = button.data('position');
+        var email = button.data('email');
+        var phnumber = button.data('phone');
+        var subject = button.data('subject');
+        var description = button.data('desc');
+        var status_id = button.data('status');
+        var seller = button.data('seller');
+        var modal = $(this);
+        modal.find('.modal-body #inquiry_id').val(inquiry_id);
+        modal.find('.modal-body #status_id').val(status_id);
+        modal.find('.modal-body #category_id').val(inquirytype);
+        modal.find('.modal-body #date').val(date);
+        modal.find('.modal-body #company').val(company);
+        modal.find('.modal-body #industry').val(industry);
+        modal.find('.modal-body #address').val(address);
+        modal.find('.modal-body #website').val(website);
+        modal.find('.modal-body #fullName').val(fullName);
+        modal.find('.modal-body #position').val(position);
+        modal.find('.modal-body #email').val(email);
+        modal.find('.modal-body #phnumber').val(phnumber);
+        modal.find('.modal-body #subject').val(subject);
+        modal.find('.modal-body #description').val(description);
+        modal.find('.modal-body #seller').val(seller);
+    });
+    $('#deleteInquiry_confirm').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var inquiry_id = button.data('inquiryid');
+        var modal = $(this);
+        modal.find('.modal-body #inquiry_id').val(inquiry_id);
+    });
     //=====================End Inquiry Page===========================
+    $('#status_id').on('change', function() {
+        this.form.submit();
+    });
+    $('#category_id').on('change', function() {
+        this.form.submit();
+    });
+
+    $("#reset").on('click', function () {
+        $('#reset')[0].reset();
+    })
 
 </script>
 </body>

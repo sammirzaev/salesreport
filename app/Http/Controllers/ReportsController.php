@@ -50,6 +50,16 @@ class ReportsController extends Controller
         return view('admin.month.monthly', compact('status', 'categories', 'inquiries'));
     }
 
+    public function seller(){
+        $sellerByWeek = DB::table('inquiries')->select([
+            DB::raw('count(id) as weekly_report_quantity'),
+            DB::raw('DAYNAME(created_at) as week'),
+            DB::raw('year(created_at) as year'),
+            DB::raw('seller as seller')
+        ])->groupBy(['year', 'week', 'seller'])->get();
+        return view('admin.weeks.seller', compact( 'sellerByWeek'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

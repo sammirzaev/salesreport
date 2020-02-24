@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Categories;
+use App\Exports\InquiriesExport;
+use App\Exports\InquiriesExportByStatus;
+use App\Exports\InquiryExport;
 use App\Inquiries;
 use App\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\In;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class InquiriesController extends Controller
@@ -28,6 +32,7 @@ class InquiriesController extends Controller
             orWhere('email', 'like', '%'.$search.'%')->
             orWhere('subject', 'like', '%'.$search.'%')->
             orWhere('website', 'like', '%'.$search.'%')->
+            orWhere('seller', 'like', '%'.$search.'%')->
             orWhere('description', 'like', '%'.$search.'%')->
             orderBy('id', 'DESC')->paginate(30);
         $status = Status::pluck('name', 'id')->all();
@@ -35,13 +40,35 @@ class InquiriesController extends Controller
         return view('admin.inquiry.inquiry', compact('inquiries', 'status', 'categories'));
     }
 
-    public function ajax(Request $request){
+    public function filter(Request $request){
+        $filter = $request->status_id;
+        if (!empty($filter)) {
+            $inquiries = Inquiries::where('status_id', 'like', $filter)->orderBy('id', 'DESC')->paginate(30);
+        } else {
+            $inquiries = Inquiries::where('id')->paginate(30);
+        }
         $status = Status::pluck('name', 'id')->all();
         $categories = Categories::pluck('name', 'id')->all();
-        $search = $request->get('search');
-        $inquiries = Inquiries::where('company', 'like', '%'.$search.'%')->
-        orderBy('id', 'DESC')->paginate(30);
         return view('admin.inquiry.inquiry', compact('status', 'categories', 'inquiries'));
+    }
+
+    public function filterCat(Request $request){
+        $filter = $request->category_id;
+        if (!empty($filter)) {
+            $inquiries = Inquiries::where('category_id', 'like', $filter)->orderBy('id', 'DESC')->paginate(30);
+        } else {
+            $inquiries = Inquiries::where('id')->paginate(30);
+        }
+        $status = Status::pluck('name', 'id')->all();
+        $categories = Categories::pluck('name', 'id')->all();
+        return view('admin.inquiry.inquiry', compact('status', 'categories', 'inquiries'));
+    }
+
+    public function export(){
+        return Excel::download(new InquiriesExport(), 'inquiries_data_category - '.date("d-m-Y").'.xlsx');
+    }
+    public function exportByStatus(){
+        return Excel::download(new InquiriesExportByStatus(), 'inquiries_data_status - '.date("d-m-Y").'.xlsx');
     }
 
      /**

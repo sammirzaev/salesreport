@@ -95,6 +95,9 @@
                     <li class="{{ Route::currentRouteName() === 'weekly_report' ? 'active' : '' }} nav-item">
                         <a href="{{route('weekly_report')}}"><span class="menu-title" data-i18n="">Weekly Reports</span></a>
                     </li>
+                    <li class="{{ Route::currentRouteName() === 'seller' ? 'active' : '' }} nav-item">
+                        <a href="{{route('seller')}}"><span class="menu-title" data-i18n="">Weekly Seller Reports</span></a>
+                    </li>
                     <li class="{{ Route::currentRouteName() === 'monthly_report' ? 'active' : '' }} nav-item">
                         <a href="{{route('monthly_report')}}"><span class="menu-title" data-i18n="">Monthly Reports</span></a>
                     </li>

@@ -33,34 +33,28 @@
                                     id="inquiryAddBtn">
                                 <i class="ft-droplet"></i>
                             </button>
+                                @include('admin.inquiry.add_inquiry')
+                                <form action="{{route('export')}}" method="GET" enctype="multipart/form-data">
+                                <button class="btn btn-bg-gradient-x-purple-blue mr-3 ml-3"><i class="ft-download"> Export Data By Type</i></button>
+                                </form>
+                                <form action="{{route('exportByStatus')}}" method="GET" enctype="multipart/form-data">
+                                <button class="btn btn-bg-gradient-x-blue-purple-1 ml-2 mr-5"><i class="ft-download"> Export Data By Status</i></button>
+                                </form>
+                                <div class="input-group offset-4 mt-3">
+                                        <form action="{{route('filter')}}" class="col-md-4">
+                                            {!! Form::select('status_id', array(''=>'Filter By Status') + $status, null, ['class'=>'form-control status_id mr-2', 'id'=>'status_id']) !!}
+                                        </form>
+                                        <form action="{{route('filterCat')}}" class="col-md-4">
+                                            {!! Form::select('category_id', array(''=>'Filter By Category') + $categories, null, ['class'=>'form-control status_id mr-2', 'id'=>'category_id']) !!}
+                                        </form>
+                                    <a class="btn btn-bg-gradient-x-red-pink col-md-3" href="{{route('inquiry.index')}}"><i class="ft-filter"> Reset Filter</i></a>
+                                </div>
                            </div>
-                            @include('admin.inquiry.add_inquiry')
+                            <div class="input-group col-md-4 col-lg-4 col-4 col-xl-4">
+
+                            </div>
                            <div class="col-md-12 input-group offset-4">
                                {!! Form::open(['method'=>'GET', 'action'=>'InquiriesController@index', 'id'=>'addInquiry', 'style'=>'margin-bottom:20px;', 'files'=>'true']) !!}
-                               <div class="input-group row">
-                                        <fieldset class="form-group col-xl-4 col-lg-4 col-md-4">
-                                            <select class="custom-select catID" id="catID" name="catID" data-column="0">
-                                                <option selected="" value="">Filter Category</option>
-                                                @foreach(App\Categories::all() as $category)
-                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </fieldset>
-                                       <fieldset class="form-group col-xl-4 col-lg-4 col-md-4">
-                                           <select class="custom-select statusID" id="statusID" name="statusID" data-column="1">
-                                               <option selected="" value="">Filter Status</option>
-                                               @foreach(App\Status::all() as $sts)
-                                                   <option name="search" value="{{$sts->id}}">{{$sts->name}}</option>
-                                               @endforeach
-                                           </select>
-                                       </fieldset>
-                                   <fieldset class="form-group col-xl-2 col-lg-2 col-md-2">
-                                       <button class="btn btn-bg-gradient-x-red-pink" type="button" name="filterBtn" id="filterBtn">Filter</button>
-                                   </fieldset>
-                                   <fieldset class="form-group col-xl-2 col-lg-2 col-md-2">
-                                       <button class="btn btn-bg-gradient-x-orange-yellow" type="button" name="reset" id="reset">Reset Filter</button>
-                                   </fieldset>
-                                 </div>
                             </div>
                             <div class="input-group">
                                 <input type="text"
@@ -88,6 +82,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Date of Request</th>
+                                    <th scope="col">Seller</th>
                                     <th scope="col">Inquiry Type</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Company Name</th>
@@ -100,72 +95,71 @@
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">User Comment</th>
                                     <th scope="col">Created Date</th>
                                     <th scope="col">Updated Date</th>
                                     <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @if($inquiries)
-                                    @foreach($inquiries as $inquiry)
-                                        <tr>
-                                            <th scope="row" name="id">{{$inquiry->id}}</th>
-                                            <td><span class="badge btn-bg-gradient-x-red-pink" name="date">{{$inquiry->date}}</span></td>
-                                            <td><span class="badge btn-bg-gradient-x-blue-green" name="category_id">{{$inquiry->category->name}}</span></td>
-                                            <td><span class="badge btn-bg-gradient-x-blue-cyan" name="status_id">{{$inquiry->status->name}}</span></td>
-                                            <td name="company">{{$inquiry->company}}</td>
-                                            <td name="industry">{{$inquiry->industry}}</td>
-                                            <td name="address">{{$inquiry->address}}</td>
-                                            <td name="website">{{$inquiry->website}}</td>
-                                            <td name="fullName">{{$inquiry->fullName}}</td>
-                                            <td name="position">{{$inquiry->position}}</td>
-                                            <td name="email">{{$inquiry->email}}</td>
-                                            <td name="phnumber">{{$inquiry->phnumber}}</td>
-                                            <td name="subject">{{$inquiry->subject}}</td>
-                                            <td name="description">{{$inquiry->description}}</td>
-                                            <td name="comment">{{$inquiry->comment}}</td>
-                                            <td name="created_at">{{$inquiry->created_at->diffForHumans()}}</td>
-                                            <td name="updated_at">{{$inquiry->updated_at->diffForHumans()}}</td>
-                                            <td>
-                                                <a href="{{ route('inquiry.edit', $inquiry->id)}}"
-                                                   type="button"
-                                                   class="btn btn-icon btn-bg-gradient-x-blue-green mr-1 shadow-lg shadow-lg"
-                                                   data-inquiryid="{{$inquiry->id}}"
-                                                   data-inquirydate="{{$inquiry->date}}"
-                                                   data-inquirytype="{{$inquiry->category->name}}"
-                                                   data-inquirycompany="{{$inquiry->company}}"
-                                                   data-inquiryindustry="{{$inquiry->industry}}"
-                                                   data-inquiryaddress="{{$inquiry->address}}"
-                                                   data-inquirywebsite="{{$inquiry->website}}"
-                                                   data-inquiryfullname="{{$inquiry->fullName}}"
-                                                   data-inquiryposition="{{$inquiry->position}}"
-                                                   data-inquiryemail="{{$inquiry->email}}"
-                                                   data-inquiryphone="{{$inquiry->phnumber}}"
-                                                   data-inquirysubject="{{$inquiry->subject}}"
-                                                   data-inquirydesc="{{$inquiry->description}}"
-                                                   data-inquirystatus="{{$inquiry->status->name}}"
-                                                   data-inquirycomment="{{$inquiry->comment}}"
-                                                   data-toggle="modal"
-                                                   data-keyboard="false"
-                                                   data-target="#editInquiry"
-                                                   id="categoryEditBtn">
-                                                      <i class="ft-edit"></i>
-                                                 </a>
-                                                <button type="button"
-                                                        class="btn btn-icon btn-bg-gradient-x-purple-red mr-1 shadow-lg shadow-lg"
-                                                        data-categoryid="{{$inquiry->id}}"
-                                                        data-toggle="modal"
-                                                        data-keyboard="false"
-                                                        data-target="#deleteInquiry_confirm">
-                                                    <i class="ft-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        @include('admin.inquiry.edit_inquiry')
-                                        @include('admin.inquiry.deleteInquiry_confirm')
-                                    @endforeach
-                                @endif
+                                    @if($inquiries)
+                                        @foreach($inquiries as $inquiry)
+                                            <tr>
+                                                <th scope="row">{{$inquiry->id}}</th>
+                                                <td><span class="badge btn-bg-gradient-x-red-pink">{{$inquiry->date}}</span></td>
+                                                <td><span class="badge badge-primary">{{$inquiry->seller}}</span></td>
+                                                <td><span class="badge btn-bg-gradient-x-blue-green">{{$inquiry->category->name}}</span></td>
+                                                <td><span class="badge btn-bg-gradient-x-blue-cyan">{{$inquiry->status->name}}</span></td>
+                                                <td>{{$inquiry->company}}</td>
+                                                <td>{{$inquiry->industry}}</td>
+                                                <td>{{$inquiry->address}}</td>
+                                                <td>{{$inquiry->website}}</td>
+                                                <td>{{$inquiry->fullName}}</td>
+                                                <td>{{$inquiry->position}}</td>
+                                                <td>{{$inquiry->email}}</td>
+                                                <td>{{$inquiry->phnumber}}</td>
+                                                <td>{{$inquiry->subject}}</td>
+                                                <td>{{$inquiry->description}}</td>
+                                                <td>{{$inquiry->created_at->diffForHumans()}}</td>
+                                                <td>{{$inquiry->updated_at->diffForHumans()}}</td>
+                                                <td>
+                                                    <a href="{{ route('inquiry.edit', $inquiry->id)}}"
+                                                       type="button"
+                                                       class="btn btn-icon btn-bg-gradient-x-blue-green mr-1 shadow-lg shadow-lg"
+                                                       data-inquiryid="{{$inquiry->id}}"
+                                                       data-date="{{$inquiry->date}}"
+                                                       data-type="{{$inquiry->category->id}}"
+                                                       data-company="{{$inquiry->company}}"
+                                                       data-industry="{{$inquiry->industry}}"
+                                                       data-address="{{$inquiry->address}}"
+                                                       data-website="{{$inquiry->website}}"
+                                                       data-fullname="{{$inquiry->fullName}}"
+                                                       data-position="{{$inquiry->position}}"
+                                                       data-email="{{$inquiry->email}}"
+                                                       data-phone="{{$inquiry->phnumber}}"
+                                                       data-subject="{{$inquiry->subject}}"
+                                                       data-desc="{{$inquiry->description}}"
+                                                       data-status="{{$inquiry->status->id}}"
+                                                       data-seller="{{$inquiry->seller}}"
+                                                       data-toggle="modal"
+                                                       data-keyboard="false"
+                                                       data-target="#editInquiry"
+                                                       id="inquiriesEditBtn">
+                                                        <i class="ft-edit"></i>
+                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-icon btn-bg-gradient-x-purple-red mr-1 shadow-lg shadow-lg"
+                                                            data-inquiryid="{{$inquiry->id}}"
+                                                            data-toggle="modal"
+                                                            data-keyboard="false"
+                                                            data-target="#deleteInquiry_confirm">
+                                                        <i class="ft-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            @include('admin.inquiry.edit_inquiry')
+                                            @include('admin.inquiry.deleteInquiry_confirm')
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -185,26 +179,5 @@
                 </nav>
             </div>
         </div>
-
-@stop
-@section('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.5/js/tableexport.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript">
-        $('table').tableExport({
-            position: "top",
-            fileName: 'Inquiries Report',
-            formats: ["csv"],
-            bootstrap: true,
-            headers: true,
-            footers: true,
-            exportButtons: true,
-        });
-        document.getElementsByClassName('catID').value = localStorage.getItem('catID');
-        document.getElementsByClassName('statusID').value = localStorage.getItem('statusID');
-    </script>
 @stop
 

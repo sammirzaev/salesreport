@@ -10,48 +10,48 @@
                   </div>
                   <div class="modal-body bg-gradient-radial-info text-white">
                       <div class="card-body row">
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               <input type="hidden" name="inquiry_id" id="inquiry_id" value="">
-                              {!! Form::select('status_id', $status, null, ['class'=>'form-control', 'id'=>'inputStatus', 'required']) !!}
+                              {!! Form::select('status_id', $status, null, ['class'=>'form-control', 'id'=>'status_id', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                              {!! Form::select('category_id', $categories, null, ['class'=>'form-control', 'id'=>'inputCategory', 'required']) !!}
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
+                              {!! Form::select('category_id', $categories, null, ['class'=>'form-control', 'id'=>'category_id', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('date', null, ['class'=>'form-control', 'placeholder'=>'DD/MM/YYYY', 'id'=>'date', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('company', null, ['class'=>'form-control', 'placeholder'=>'Company Name', 'id'=>'company', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('industry', null, ['class'=>'form-control', 'placeholder'=>'Industry Name', 'id'=>'industry', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'Company Address', 'id'=>'address', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('website', null, ['class'=>'form-control', 'placeholder'=>'Company Website', 'id'=>'website', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('fullName', null, ['class'=>'form-control', 'placeholder'=>'Requester Full Name', 'id'=>'fullName', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('position', null, ['class'=>'form-control', 'placeholder'=>'Requester Position', 'id'=>'position', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Requester Email', 'id'=>'email', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('phnumber', null, ['class'=>'form-control', 'placeholder'=>'Requester Phone Number', 'id'=>'phnumber', 'required']) !!}
                           </fieldset>
-                          <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
+                          <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('subject', null, ['class'=>'form-control', 'placeholder'=>'Requester Subject', 'id'=>'subject', 'required']) !!}
                           </fieldset>
                           <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                              {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Requester Description', 'id'=>'description', 'required']) !!}
+                              {!! Form::text('seller', null, ['class'=>'form-control', 'placeholder'=>'Seller Name', 'id'=>'seller', 'required']) !!}
                           </fieldset>
                           <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                              {!! Form::textarea('comment', null, ['class'=>'form-control', 'placeholder'=>'User Comment', 'id'=>'comment', 'required']) !!}
+                              {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Requester Description', 'id'=>'description', 'required']) !!}
                           </fieldset>
                       </div>
 

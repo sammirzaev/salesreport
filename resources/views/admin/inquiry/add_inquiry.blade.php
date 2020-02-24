@@ -48,10 +48,10 @@
                         {!! Form::text('subject', null, ['class'=>'form-control', 'placeholder'=>'Requester Subject', 'id'=>'subject', 'required']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                        {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Requester Description', 'id'=>'description', 'required']) !!}
+                        {!! Form::text('seller', null, ['class'=>'form-control', 'placeholder'=>'Seller Name', 'id'=>'seller', 'required']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                        {!! Form::textarea('comment', null, ['class'=>'form-control', 'placeholder'=>'User Comment', 'id'=>'comment', 'required']) !!}
+                        {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Requester Description', 'id'=>'description', 'required']) !!}
                     </fieldset>
                 </div>
 
