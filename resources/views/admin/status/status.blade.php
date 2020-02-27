@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header mt-5">
                         <h4 class="card-title">Inquiry Status</h4>
                         <div class="content">
                             <div class="col-md-4 col-lg-4 col-sm-12 float-right mt-2" style="opacity: .6;">

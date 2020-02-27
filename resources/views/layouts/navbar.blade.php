@@ -101,16 +101,6 @@
                     <li class="{{ Route::currentRouteName() === 'monthly_report' ? 'active' : '' }} nav-item">
                         <a href="{{route('monthly_report')}}"><span class="menu-title" data-i18n="">Monthly Reports</span></a>
                     </li>
-                    <li class="has-sub"><a class="menu-item" href="#">Charts</a>
-                        <ul class="menu-content" style="">
-                            <li class=" nav-item">
-                              <a href="{{route('charts.index')}}"><span class="menu-title" data-i18n="">Weekly Charts</span></a>
-                             </li>
-                             <li class=" nav-item">
-                               <a href="{{route('charts.index')}}"><span class="menu-title" data-i18n="">Monthly Charts</span></a>
-                              </li>
-                        </ul>
-                    </li>
                 </ul>
             </li>
          </ul>

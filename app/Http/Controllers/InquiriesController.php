@@ -34,7 +34,7 @@ class InquiriesController extends Controller
             orWhere('website', 'like', '%'.$search.'%')->
             orWhere('seller', 'like', '%'.$search.'%')->
             orWhere('description', 'like', '%'.$search.'%')->
-            orderBy('id', 'DESC')->paginate(30);
+            orderBy('id', 'DESC')->get();
         $status = Status::pluck('name', 'id')->all();
         $categories = Categories::pluck('name', 'id')->all();
         return view('admin.inquiry.inquiry', compact('inquiries', 'status', 'categories'));
@@ -55,9 +55,9 @@ class InquiriesController extends Controller
     public function filterCat(Request $request){
         $filter = $request->category_id;
         if (!empty($filter)) {
-            $inquiries = Inquiries::where('category_id', 'like', $filter)->orderBy('id', 'DESC')->paginate(30);
+            $inquiries = Inquiries::where('category_id', 'like', $filter)->orderBy('id', 'DESC')->get();
         } else {
-            $inquiries = Inquiries::where('id')->paginate(30);
+            $inquiries = Inquiries::where('id')->get();
         }
         $status = Status::pluck('name', 'id')->all();
         $categories = Categories::pluck('name', 'id')->all();
@@ -69,6 +69,20 @@ class InquiriesController extends Controller
     }
     public function exportByStatus(){
         return Excel::download(new InquiriesExportByStatus(), 'inquiries_data_status - '.date("d-m-Y").'.xlsx');
+    }
+
+    public function dateRange(Request $request){
+
+        $filterFrom = $request->get('fromDate');
+        $filterTo = $request->get('toDate');
+        if (!empty($filterFrom) && !empty($filterTo)) {
+            $inquiries = Inquiries::whereBetween('date',[$filterFrom, $filterTo])->get();
+        } else {
+            $inquiries = Inquiries::all();
+        }
+        $status = Status::pluck('name', 'id')->all();
+        $categories = Categories::pluck('name', 'id')->all();
+        return view('admin.inquiry.inquiry', compact('status', 'categories', 'inquiries'));
     }
 
      /**

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header mt-5">
                         <h4 class="card-title">Inquiry Weekly Report</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
@@ -33,7 +33,7 @@
                                     <tr>
                                         <td></td>
                                         <td>{{$week->weekly_report_quantity}}</td>
-                                        <td>{{$week->week}}</td>
+                                        <td>{{$week->week}} | <span class="badge bg-gradient-directional-purple shadow-lg">{{$week->day}} {{$week->month}}</span></td>
                                         <td>{{$week->year}}</td>
                                     </tr>
                                 @endforeach

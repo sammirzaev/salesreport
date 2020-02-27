@@ -28,35 +28,31 @@ class ReportsController extends Controller
         $ordersByWeek = DB::table('inquiries')->select([
             DB::raw('count(id) as weekly_report_quantity'),
             DB::raw('DAYNAME(created_at) as week'),
+            DB::raw('DAY(created_at) as day'),
+            DB::raw('MONTHNAME(created_at) as month'),
             DB::raw('year(created_at) as year')
-        ])->groupBy(['year', 'week'])->get();
+        ])->groupBy(['year', 'week', 'day', 'month'])->get();
         return view('admin.weeks.weeks', compact( 'ordersByWeek'));
     }
 
     public function monthlyReports(Request $request){
-        $search = $request->get('search');
-        $inquiries = Inquiries::where('company', 'like', '%'.$search.'%')->
-        orWhere('date', 'like', '%'.$search.'%')->
-        orWhere('company', 'like', '%'.$search.'%')->
-        orWhere('position', 'like', '%'.$search.'%')->
-        orWhere('email', 'like', '%'.$search.'%')->
-        orWhere('subject', 'like', '%'.$search.'%')->
-        orWhere('website', 'like', '%'.$search.'%')->
-        orWhere('description', 'like', '%'.$search.'%')->
-        orWhere('id', 'like', '%'.$search.'%')->
-        orderBy('id', 'DESC')->paginate(30);
-        $status = Status::pluck('name', 'id')->all();
-        $categories = Categories::pluck('name', 'id')->all();
-        return view('admin.month.monthly', compact('status', 'categories', 'inquiries'));
+        $ordersByMonth = DB::table('inquiries')->select([
+            DB::raw('count(id) as monthly_report'),
+            DB::raw('MONTHNAME(created_at) as month'),
+            DB::raw('year(created_at) as year')
+        ])->groupBy(['year', 'month'])->get();
+        return view('admin.month.monthly', compact('ordersByMonth'));
     }
 
     public function seller(){
         $sellerByWeek = DB::table('inquiries')->select([
             DB::raw('count(id) as weekly_report_quantity'),
             DB::raw('DAYNAME(created_at) as week'),
+            DB::raw('DAY(created_at) as day'),
+            DB::raw('MONTHNAME(created_at) as month'),
             DB::raw('year(created_at) as year'),
             DB::raw('seller as seller')
-        ])->groupBy(['year', 'week', 'seller'])->get();
+        ])->groupBy(['year', 'week', 'seller', 'day', 'month'])->get();
         return view('admin.weeks.seller', compact( 'sellerByWeek'));
     }
 

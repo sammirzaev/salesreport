@@ -12,12 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::group(['middleware'=>'admin'], function() {
     Route::get('/admin', 'AdminController@index')->name('admin');
-    Route::resource('/admin/charts', 'ChartsController');
     Route::resource('/admin/users', 'UserController');
     Route::resource('/admin/roles', 'RolesController');
     Route::resource('/admin/weeks', 'WeeksController');
@@ -26,15 +25,14 @@ Route::group(['middleware'=>'admin'], function() {
     Route::resource('/admin/inquiry', 'InquiriesController');
     Route::get('/admin/filter', 'InquiriesController@filter')->name('filter');
     Route::get('/admin/filterCat', 'InquiriesController@filterCat')->name('filterCat');
+    Route::get('/admin/dateRange', 'InquiriesController@dateRange')->name('dateRange');
     Route::get('/admin/export', 'InquiriesController@export')->name('export');
     Route::get('/admin/exportByStatus', 'InquiriesController@exportByStatus')->name('exportByStatus');
     Route::resource('/admin/inquirytype', 'InquiryTypeController');
-    Route::resource('/admin/monthlychart', 'MonthlyChartsController');
     Route::resource('/admin/monthly', 'MonthsController');
     Route::get('/admin/weeklyReports', 'ReportsController@weeklyReports')->name('weekly_report');
     Route::get('/admin/seller', 'ReportsController@seller')->name('seller');
     Route::get('/admin/monthlyReports', 'ReportsController@monthlyReports')->name('monthly_report');
-    Route::get('/admin/test', 'InquiryTypeController@getAllInquiriesAllWeeks');
 });
 
 Auth::routes();

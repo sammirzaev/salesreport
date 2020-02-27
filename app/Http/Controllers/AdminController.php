@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Categories;
+use App\Inquiries;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -14,8 +18,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('/admin/front');
+        $inquiries = Inquiries::count();
+        $inquiries_status = DB::table('inquiries')
+            ->join('statuses', 'inquiries.status_id', '=', 'statuses.id')
+            ->where('statuses.name', '=', 'Completed')
+            ->groupBy('status_id')
+            ->count();
+        $seller = Inquiries::where('seller', '=', 'website')->count();
+        $categories = DB::table('categories')
+            ->select('categories.name')->get();
+        return view('/admin/front', compact('inquiries', 'inquiries_status', 'seller', 'categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.

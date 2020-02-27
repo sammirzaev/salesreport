@@ -7,7 +7,9 @@
                 <div class="row match-height">
                     <div class="col-12">
                         <div class="">
-                            <div id="gradient-line-chart1" class="height-250 GradientlineShadow1"></div>
+                            <div id="gradient-line-chart1" class="height-250 GradientlineShadow1">
+                                <div class="digital-clock">00:00:00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -15,15 +17,14 @@
                 <!-- eCommerce statistic -->
                 <div class="row">
                     <div class="col-xl-4 col-lg-6 col-md-12">
-                        <div class="card pull-up ecom-card-1 bg-white">
+                        <div class="card pull-up ecom-card-1 bg-gradient-directional-white">
                             <div class="card-content ecom-card2 height-180">
-                                <h5 class="text-muted danger position-absolute p-1">Total Weekly Inquiries</h5>
+                                <h5 class="text-muted danger position-absolute p-1">Total Inquiries</h5>
                                 <div>
-                                    <i class="ft-pie-chart danger font-large-1 float-right p-1"></i>
+                                    <i class="ft-calendar danger font-large-1 float-right p-1"></i>
                                 </div>
-                                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3  ">
-                                    <div id="progress-stats-bar-chart"></div>
-                                    <div id="progress-stats-line-chart" class="progress-stats-shadow"></div>
+                                <div class="col-md-12 mt-5 offset-5">
+                                    <h2 class="badge bg-gradient-directional-purple font-large-3 rounded">{{$inquiries}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -31,13 +32,12 @@
                     <div class="col-xl-4 col-lg-6 col-md-12">
                         <div class="card pull-up ecom-card-1 bg-white">
                             <div class="card-content ecom-card2 height-180">
-                                <h5 class="text-muted info position-absolute p-1">Total Approved Inquiries</h5>
+                                <h5 class="text-muted info position-absolute p-1">Total Completed Inquiries</h5>
                                 <div>
                                     <i class="ft-activity info font-large-1 float-right p-1"></i>
                                 </div>
-                                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3">
-                                    <div id="progress-stats-bar-chart1"></div>
-                                    <div id="progress-stats-line-chart1" class="progress-stats-shadow"></div>
+                                <div class="col-md-12 mt-5 offset-5">
+                                    <h2 class="badge bg-gradient-directional-purple font-large-3 rounded">{{$inquiries_status}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -45,13 +45,12 @@
                     <div class="col-xl-4 col-lg-12">
                         <div class="card pull-up ecom-card-1 bg-white">
                             <div class="card-content ecom-card2 height-180">
-                                <h5 class="text-muted warning position-absolute p-1">Weekly Top Categories</h5>
+                                <h5 class="text-muted warning position-absolute p-1">Inquiries from WEBSITE</h5>
                                 <div>
                                     <i class="ft-shopping-cart warning font-large-1 float-right p-1"></i>
                                 </div>
-                                <div class="progress-stats-container ct-golden-section height-75 position-relative pt-3">
-                                    <div id="progress-stats-bar-chart2"></div>
-                                    <div id="progress-stats-line-chart2" class="progress-stats-shadow"></div>
+                                <div class="col-md-12 mt-5 offset-5">
+                                    <h2 class="badge bg-gradient-directional-purple font-large-3 rounded">{{$seller}}</h2>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +61,8 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <h4 class="card-title">Active Inquiries</h4>
-                                    <h6 class="card-subtitle text-muted">In Process Inquiries</h6>
+                                    <h4 class="card-title">Active Categories</h4>
+                                    <h6 class="card-subtitle text-muted">In Process for use Inquiries</h6>
                                 </div>
                                 <div id="carousel-area" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
@@ -93,10 +92,11 @@
                                 </div>
                             </div>
                             <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
-                                <span class="float-left">2 days ago</span>
+                                <span class="float-left">{{\Carbon\Carbon::now('Asia/Dubai')->toTimeString()}}</span>
                                 <span class="tags float-right">
-                                    <span class="badge badge-pill badge-primary">Branding</span>
-                                    <span class="badge badge-pill badge-danger">Design</span>
+                                    @foreach($categories as $category)
+                                    <span class="badge badge-pill badge-primary">{{$category->name}}</span>
+                                    @endforeach
                                 </span>
                             </div>
                         </div>
@@ -106,4 +106,40 @@
         </div>
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            clockUpdate();
+            setInterval(clockUpdate, 1000);
+        })
 
+        function clockUpdate() {
+            var date = new Date();
+            $('.digital-clock').css({'color': '#fff', 'text-shadow': '0 0 6px #ff0'});
+            function addZero(x) {
+                if (x < 10) {
+                    return x = '0' + x;
+                } else {
+                    return x;
+                }
+            }
+
+            function twelveHour(x) {
+                if (x > 12) {
+                    return x = x - 12;
+                } else if (x == 0) {
+                    return x = 12;
+                } else {
+                    return x;
+                }
+            }
+
+            var h = addZero(twelveHour(date.getHours()));
+            var m = addZero(date.getMinutes());
+            var s = addZero(date.getSeconds());
+
+            $('.digital-clock').text(h + ':' + m + ':' + s)
+        }
+    </script>
+
+@stop

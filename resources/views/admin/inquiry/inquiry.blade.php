@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header mt-5">
                         <h4 class="card-title">Inquiry Registration</h4>
                         <div class="content">
                             <div class="col-md-4 col-lg-4 col-sm-12 float-right mt-2" style="opacity: .6;">
@@ -34,51 +34,69 @@
                                 <i class="ft-droplet"></i>
                             </button>
                                 @include('admin.inquiry.add_inquiry')
-                                <form action="{{route('export')}}" method="GET" enctype="multipart/form-data">
-                                <button class="btn btn-bg-gradient-x-purple-blue mr-3 ml-3"><i class="ft-download"> Export Data By Type</i></button>
-                                </form>
-                                <form action="{{route('exportByStatus')}}" method="GET" enctype="multipart/form-data">
-                                <button class="btn btn-bg-gradient-x-blue-purple-1 ml-2 mr-5"><i class="ft-download"> Export Data By Status</i></button>
-                                </form>
-                                <div class="input-group offset-4 mt-3">
+                                <div class="input-group offset-5 mt-3">
                                         <form action="{{route('filter')}}" class="col-md-4">
                                             {!! Form::select('status_id', array(''=>'Filter By Status') + $status, null, ['class'=>'form-control status_id mr-2', 'id'=>'status_id']) !!}
                                         </form>
                                         <form action="{{route('filterCat')}}" class="col-md-4">
                                             {!! Form::select('category_id', array(''=>'Filter By Category') + $categories, null, ['class'=>'form-control status_id mr-2', 'id'=>'category_id']) !!}
                                         </form>
-                                    <a class="btn btn-bg-gradient-x-red-pink col-md-3" href="{{route('inquiry.index')}}"><i class="ft-filter"> Reset Filter</i></a>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <a class="btn btn-bg-gradient-x-red-pink" href="{{route('inquiry.index')}}"><i class="ft-filter"> Reset Filter</i></a>
+                                        </div>
+                                    </div>
                                 </div>
                            </div>
-                            <div class="input-group col-md-4 col-lg-4 col-4 col-xl-4">
-
-                            </div>
-                           <div class="col-md-12 input-group offset-4">
-                               {!! Form::open(['method'=>'GET', 'action'=>'InquiriesController@index', 'id'=>'addInquiry', 'style'=>'margin-bottom:20px;', 'files'=>'true']) !!}
-                            </div>
-                            <div class="input-group">
-                                <input type="text"
-                                       class="search-box col-xl-6 offset-2 search"
-                                       name="search"
-                                       id="search"
-                                       style="
-                                       border-bottom-left-radius: 20px;
-                                       border-top-left-radius: 20px;
-                                       padding: 10px;"
-                                       value="{{isset($search) ? $search : ''}}">
-                                <button type="submit"
-                                        class="btn btn-bg-gradient-x-purple-blue float-right"
-                                        id="searchBtn"
-                                        style="
-                                        border-bottom-right-radius: 20px;
-                                        border-top-right-radius: 20px;">Search</button>
-                            </div>
-                            {{Form::close()}}
+                            <form action="{{route('dateRange')}}" method="GET" class="row offset-3 mt-5" id="input-daterange">
+                                <div class="form-group">
+                                    <span class="badge badge-primary">FROM</span>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" id="fromDate" name="fromDate" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <span class="badge badge-primary">TO</span>
+                                    </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                       <input type="text" id="toDate" name="toDate" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-outline-success shadow-lg"><i class="ft-filter"> Filter Date</i></button>
+                                    </div>
+                                </div>
+                            </form>
+{{--                           <div class="col-md-12 input-group offset-4">--}}
+{{--                               {!! Form::open(['method'=>'GET', 'action'=>'InquiriesController@index', 'id'=>'addInquiry', 'style'=>'margin-bottom:20px;', 'files'=>'true']) !!}--}}
+{{--                            </div>--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text"--}}
+{{--                                       class="search-box col-xl-6 offset-2 search"--}}
+{{--                                       name="search"--}}
+{{--                                       id="search"--}}
+{{--                                       style="--}}
+{{--                                       border-bottom-left-radius: 20px;--}}
+{{--                                       border-top-left-radius: 20px;--}}
+{{--                                       padding: 10px;"--}}
+{{--                                       value="{{isset($search) ? $search : ''}}">--}}
+{{--                                <button type="submit"--}}
+{{--                                        class="btn btn-bg-gradient-x-purple-blue float-right"--}}
+{{--                                        id="searchBtn"--}}
+{{--                                        style="--}}
+{{--                                        border-bottom-right-radius: 20px;--}}
+{{--                                        border-top-right-radius: 20px;">Search</button>--}}
+{{--                            </div>--}}
+{{--                            {{Form::close()}}--}}
                             </div>
                         </div>
                         <div class="table-responsive table">
-                            <table class="table" id="dataTable">
-                                <thead class="thead-dark">
+                            <table class="table m-1" id="dataTable">
+                                <thead class="fixed-table-header">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Date of Request</th>
@@ -173,11 +191,50 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination pagination-round">
                         <li class="page-item">
-                          {{$inquiries->render()}}
+{{--                          {{$inquiries->render()}}--}}
                         </li>
                     </ul>
                 </nav>
             </div>
         </div>
 @stop
+@section('scripts')
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/kt-2.5.1/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sp-1.0.1/sl-1.3.1/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dataTable').DataTable( {
+                "paging": true,
+                "pagingType": "full_numbers",
+                "iDisplayLength": 30,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'print'
+                ]
+            } );
+        } );
+        $('#datepicker').datepicker({
+            weekStart: 1,
+            dateFormat: 'mm-dd-yy',
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
 
+        $('#fromDate').datepicker({
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
+
+        $('#toDate').datepicker({
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
+    </script>
+@stop

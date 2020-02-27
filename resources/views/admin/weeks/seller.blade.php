@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header mt-5">
                         <h4 class="card-title">Inquiry Weekly Seller Report</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
@@ -24,7 +24,7 @@
                                 <th scope="col">Export Weekly Report</th>
                                 <th scope="col">Seller</th>
                                 <th scope="col">Daily Quantity Inquiries</th>
-                                <th scope="col">Week Days</th>
+                                <th scope="col">Week Days </th>
                                 <th scope="col">Year</th>
                             </tr>
                             </thead>
@@ -35,7 +35,7 @@
                                         <td></td>
                                         <td>{{$week->seller}}</td>
                                         <td>{{$week->weekly_report_quantity}}</td>
-                                        <td>{{$week->week}}</td>
+                                        <td>{{$week->week}} | <span class="badge bg-gradient-directional-pink shadow-lg"> {{$week->day}} {{$week->month}}</span></td>
                                         <td>{{$week->year}}</td>
                                     </tr>
                                 @endforeach
@@ -67,7 +67,7 @@
     <script type="text/javascript">
         $('table').tableExport({
             position: "top",
-            fileName: 'Inquiries Weekly Report',
+            fileName: 'Inquiries Weekly Seller Report',
             formats: ["csv"],
             headers: true,
             footers: true,

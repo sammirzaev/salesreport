@@ -18,7 +18,7 @@
                               {!! Form::select('category_id', $categories, null, ['class'=>'form-control', 'id'=>'category_id', 'required']) !!}
                           </fieldset>
                           <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                              {!! Form::text('date', null, ['class'=>'form-control', 'placeholder'=>'DD/MM/YYYY', 'id'=>'date', 'required']) !!}
+                              {!! Form::text('date', null, ['class'=>'form-control', 'placeholder'=>'DD/MM/YYYY', 'id'=>'date', 'data-date-format'=>'dd/mm/yyyy', 'required']) !!}
                           </fieldset>
                           <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
                               {!! Form::text('company', null, ['class'=>'form-control', 'placeholder'=>'Company Name', 'id'=>'company', 'required']) !!}

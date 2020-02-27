@@ -140,7 +140,7 @@ class InquiryTypeController extends Controller
         if(!empty($cat_weeks)){
             foreach ($cat_weeks as $weeks){
                 $date = new \DateTime($weeks);
-                $week_days_name = $date->format('l M');
+                $week_days_name = $date->format('l d M');
                 $week_days_num = $date->format('d');
                 $weeks_array[$week_days_num] = $week_days_name;
             }

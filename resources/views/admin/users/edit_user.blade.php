@@ -22,8 +22,8 @@
                               {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Password', 'id'=>'password', 'required']) !!}
                           </fieldset>
                           <fieldset class="form-group col-xl-4 col-lg-6 col-md-12">
-                              {!! Form::submit('Edit User', ['class'=>'btn btn-icon btn-bg-gradient-x-blue-green mr-1 shadow-lg float-left', 'id'=>'btnSubmit']) !!}
-                              <a href="{{route('users.index')}}" type="button" class="btn btn-icon btn-bg-gradient-x-purple-blue mr-1 shadow-lg shadow-lg"><i class="la la-sign-in"></i></a>
+                              {!! Form::submit('Update User', ['class'=>'btn btn-icon btn-bg-gradient-x-blue-green mr-1 shadow-lg float-left', 'id'=>'btnSubmit']) !!}
+                              <a href="{{route('users.index')}}" type="button" class="btn btn-bg-gradient-x-purple-blue mr-1 shadow-lg shadow-lg"><i class="la la-backward"></i></a>
                           </fieldset>
                       </div>
                       {!! Form::close() !!}
