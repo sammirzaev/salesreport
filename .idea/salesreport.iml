@@ -112,5 +112,13 @@
     <orderEntry type="library" name="pdfmake" level="application" />
     <orderEntry type="library" name="vfs_fonts" level="application" />
     <orderEntry type="library" name="bootstrap-datepicker" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="Chart" level="application" />
+    <orderEntry type="library" name="pdfmake" level="application" />
+    <orderEntry type="library" name="vfs_fonts" level="application" />
+    <orderEntry type="library" name="datatables" level="application" />
+    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
+    <orderEntry type="library" name="FileSaver" level="application" />
+    <orderEntry type="library" name="tableexport" level="application" />
   </component>
 </module>

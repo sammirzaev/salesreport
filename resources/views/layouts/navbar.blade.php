@@ -35,7 +35,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">
-                                    <i class="ft-user"></i> My Profile
+                                    <i class="ft-user"></i> <span class="badge bg-gradient-directional-pink p-2">{{strtoupper(Auth::user()->role->name)}}</span>
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item"  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -58,7 +58,7 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('admin')}}">
                     <img class="brand-logo" alt="Chameleon admin logo" src="{{asset('assets/theme-assets/images/logo/logo.png')}}"/>
-                    <h3 class="brand-text">9Yards</h3></a></li>
+                    <h3 class="brand-text">{{Auth::user()->name}}</h3></a></li>
             <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
         </ul>
     </div>

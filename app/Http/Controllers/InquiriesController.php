@@ -39,7 +39,6 @@ class InquiriesController extends Controller
         $categories = Categories::pluck('name', 'id')->all();
         return view('admin.inquiry.inquiry', compact('inquiries', 'status', 'categories'));
     }
-
     public function filter(Request $request){
         $filter = $request->status_id;
         if (!empty($filter)) {

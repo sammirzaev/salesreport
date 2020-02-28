@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="{{asset('assets/login/images/icons/favicon.ico')}}"/>
+    <link rel="icon" type="image/png" href="{{asset('assets/theme-assets/images/ico/favicon.png')}}"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/login/vendor/bootstrap/css/bootstrap.min.css')}}">
     <!--===============================================================================================-->
@@ -32,8 +32,10 @@
 
             <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
                 @csrf
-                    <span class="login100-form-title">
-						9Yards <br> Sales Report App
+
+                <span class="login100-form-title">
+                     <img src="{{asset('assets/theme-assets/images/logo/logo.png')}}" alt="9yardsSalesReport" width="50">
+						<br> Sales Report App
 					</span>
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus type="text" name="email" placeholder="Email">
@@ -47,7 +49,7 @@
                     </span>
                     @enderror
                 </div>
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>                <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
                     <input class="input100 @error('password') is-invalid @enderror" name="password" autocomplete="current-password" type="password" placeholder="Password">
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">

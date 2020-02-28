@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Users</h4>
+                    <div class="card-header mt-5">
+                        <h4 class="card-title">Users  <span class="badge bg-gradient-directional-red p-2">{{strtoupper('If you will face any issue please contact with developer')}}</span></h4>
                         <div class="content">
                             <div class="col-md-4 col-lg-4 col-sm-12 float-right mt-2" style="opacity: .6;">
                                 @include('flash-message')
@@ -49,7 +49,7 @@
                                         <th scope="row">{{$user->id}}</th>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->role->name}}</td>
+                                        <td><span class="badge bg-gradient-directional-pink p-2">{{strtoupper($user->role->name)}}</span></td>
                                         @if($user->is_active == 1)
                                             <td><span class="badge badge-success btn-bg-gradient-x-blue-green">{{$user->is_active == 1 ? 'Active': 'Not Active'}}</span></td>
                                         @else
@@ -75,5 +75,4 @@
         </div>
         <!-- Table head options end -->
     </div>
-
 @stop

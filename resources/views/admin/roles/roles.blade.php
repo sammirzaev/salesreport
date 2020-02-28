@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header mt-5">
-                        <h4 class="card-title">User Roles</h4>
+                        <h4 class="card-title">User Roles <span class="badge bg-gradient-directional-warning p-2">{{strtoupper('Please kindly do not change the roles, keep it same as it is')}}</span></h4>
                         <div class="content">
                             <div class="col-md-4 col-lg-4 col-sm-12 float-right mt-2" style="opacity: .6;">
                                 @include('flash-message')
@@ -64,6 +64,5 @@
         </div>
         <!-- Table head options end -->
     </div>
-
 @stop
 

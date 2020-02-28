@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bootstrap-datepicker, buttons.dataTables, dataTables.bootstrap, datatables, jquery, jquery.dataTables, line-awesome, pdfmake, tableexport, vfs_fonts}" />
+    <file url="PROJECT" libraries="{Chart, FileSaver, bootstrap-datepicker, datatables, jquery, pdfmake, tableexport, vfs_fonts}" />
   </component>
 </project>
