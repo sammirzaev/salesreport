@@ -34,8 +34,8 @@
                 @csrf
 
                 <span class="login100-form-title">
-                     <img src="{{asset('assets/theme-assets/images/logo/logo.png')}}" alt="9yardsSalesReport" width="50">
-						<br> Sales Report App
+                     <img src="{{asset('assets/theme-assets/images/logo/logo.png')}}" alt="9yardsSalesReport" width="70">
+                    <br> Sales Report App
 					</span>
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus type="text" name="email" placeholder="Email">

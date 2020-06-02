@@ -16,7 +16,8 @@
         "laravel/ui": "^1.1",
         "laravelcollective/html": "^6.0",
         "maatwebsite/excel": "^3.1",
-        "yajra/laravel-datatables-oracle": "^9.8"
+        "yajra/laravel-datatables-oracle": "^9.8",
+        "symfony/translation": "4.3.8"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
