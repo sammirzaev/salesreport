@@ -21,37 +21,37 @@
                         {!! Form::text('date', null, ['class'=>'form-control', 'placeholder'=>'MM/DD/YYYY', 'id'=>'datepicker', 'data-date-format'=>'mm/dd/yyyy', 'required']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('company', null, ['class'=>'form-control', 'placeholder'=>'Company Name', 'id'=>'company', 'required']) !!}
+                        {!! Form::text('company', null, ['class'=>'form-control', 'placeholder'=>'Company Name', 'id'=>'company']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('industry', null, ['class'=>'form-control', 'placeholder'=>'Industry Name', 'id'=>'company', 'required']) !!}
+                        {!! Form::text('industry', null, ['class'=>'form-control', 'placeholder'=>'Industry Name', 'id'=>'company']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'Company Address', 'id'=>'address', 'required']) !!}
+                        {!! Form::text('address', null, ['class'=>'form-control', 'placeholder'=>'Company Address', 'id'=>'address']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('website', null, ['class'=>'form-control', 'placeholder'=>'Company Website', 'id'=>'address', 'required']) !!}
+                        {!! Form::text('website', null, ['class'=>'form-control', 'placeholder'=>'Company Website', 'id'=>'address']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('fullName', null, ['class'=>'form-control', 'placeholder'=>'Requester Full Name', 'id'=>'fullName', 'required']) !!}
+                        {!! Form::text('fullName', null, ['class'=>'form-control', 'placeholder'=>'Requester Full Name', 'id'=>'fullName']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('position', null, ['class'=>'form-control', 'placeholder'=>'Requester Position', 'id'=>'position', 'required']) !!}
+                        {!! Form::text('position', null, ['class'=>'form-control', 'placeholder'=>'Requester Position', 'id'=>'position']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Requester Email', 'id'=>'email', 'required']) !!}
+                        {!! Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Requester Email', 'id'=>'email']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('phnumber', null, ['class'=>'form-control', 'placeholder'=>'Requester Phone Number', 'id'=>'phnumber', 'required']) !!}
+                        {!! Form::text('phnumber', null, ['class'=>'form-control', 'placeholder'=>'Requester Phone Number', 'id'=>'phnumber']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-6 col-lg-6 col-md-6">
-                        {!! Form::text('subject', null, ['class'=>'form-control', 'placeholder'=>'Requester Subject', 'id'=>'subject', 'required']) !!}
+                        {!! Form::text('subject', null, ['class'=>'form-control', 'placeholder'=>'Requester Subject', 'id'=>'subject']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                        {!! Form::text('seller', null, ['class'=>'form-control', 'placeholder'=>'Seller Name', 'id'=>'seller', 'required']) !!}
+                        {!! Form::text('seller', Auth::user()->name, ['class'=>'form-control', 'placeholder'=>'Seller Name', 'id'=>'seller']) !!}
                     </fieldset>
                     <fieldset class="form-group col-xl-12 col-lg-12 col-md-12">
-                        {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Requester Description', 'id'=>'description', 'required']) !!}
+                        {!! Form::textarea('description', null, ['class'=>'form-control', 'placeholder'=>'Requester Description', 'id'=>'description']) !!}
                     </fieldset>
                 </div>
 

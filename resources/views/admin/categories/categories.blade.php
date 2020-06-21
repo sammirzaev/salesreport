@@ -23,9 +23,11 @@
                         </div>
                     </div>
                     <div class="card-content collapse show">
+                        @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'editor')
                         <div class="card-body">
                             <button type="button" class="btn btn-icon btn-bg-gradient-x-purple-red mr-1 shadow-lg toggle" data-toggle="modal" data-keyboard="false" data-target="#addCategory" id="categoryAddBtn"><i class="ft-scissors"></i></button>
                         </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead-dark">
@@ -45,10 +47,12 @@
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->created_at->diffForHumans()}}</td>
                                             <td>{{$category->updated_at->diffForHumans()}}</td>
+                                            @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'editor')
                                             <td>
                                                 <a href="{{ route('roles.edit', $category->id)}}" type="button" class="btn btn-icon btn-bg-gradient-x-blue-green mr-1 shadow-lg shadow-lg" data-categoryname="{{$category->name}}" data-categoryid="{{$category->id}}" data-toggle="modal" data-keyboard="false" data-target="#editCategory" id="categoryEditBtn"><i class="ft-edit"></i></a>
                                                 <button type="button" class="btn btn-icon btn-bg-gradient-x-purple-red mr-1 shadow-lg shadow-lg" data-categoryid="{{$category->id}}" data-toggle="modal" data-keyboard="false" data-target="#deleteCat_confirm"><i class="ft-trash"></i></button>
                                             </td>
+                                            @endif
                                         </tr>
                                         @include('admin.categories.edit_category')
                                         @include('admin.categories.deleteCat_confirm')

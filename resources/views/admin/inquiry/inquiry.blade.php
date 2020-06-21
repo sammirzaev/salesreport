@@ -71,27 +71,6 @@
                                     </div>
                                 </div>
                             </form>
-{{--                           <div class="col-md-12 input-group offset-4">--}}
-{{--                               {!! Form::open(['method'=>'GET', 'action'=>'InquiriesController@index', 'id'=>'addInquiry', 'style'=>'margin-bottom:20px;', 'files'=>'true']) !!}--}}
-{{--                            </div>--}}
-{{--                            <div class="input-group">--}}
-{{--                                <input type="text"--}}
-{{--                                       class="search-box col-xl-6 offset-2 search"--}}
-{{--                                       name="search"--}}
-{{--                                       id="search"--}}
-{{--                                       style="--}}
-{{--                                       border-bottom-left-radius: 20px;--}}
-{{--                                       border-top-left-radius: 20px;--}}
-{{--                                       padding: 10px;"--}}
-{{--                                       value="{{isset($search) ? $search : ''}}">--}}
-{{--                                <button type="submit"--}}
-{{--                                        class="btn btn-bg-gradient-x-purple-blue float-right"--}}
-{{--                                        id="searchBtn"--}}
-{{--                                        style="--}}
-{{--                                        border-bottom-right-radius: 20px;--}}
-{{--                                        border-top-right-radius: 20px;">Search</button>--}}
-{{--                            </div>--}}
-{{--                            {{Form::close()}}--}}
                             </div>
                         </div>
                         <div class="table-responsive table">
@@ -122,12 +101,14 @@
                                     @if($inquiries)
                                         @foreach($inquiries as $inquiry)
                                             <tr>
+                                                @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'seller' || Auth::user()->role->name == 'reporter' || Auth::user()->role->name == 'editor')
                                                 <th scope="row">{{$inquiry->id}}</th>
                                                 <td><span class="badge btn-bg-gradient-x-red-pink">{{$inquiry->date}}</span></td>
                                                 <td><span class="badge badge-primary">{{$inquiry->seller}}</span></td>
                                                 <td><span class="badge btn-bg-gradient-x-blue-green">{{$inquiry->category->name}}</span></td>
                                                 <td><span class="badge btn-bg-gradient-x-blue-cyan">{{$inquiry->status->name}}</span></td>
                                                 <td>{{$inquiry->company}}</td>
+                                                @if(Auth::user()->role_id == 1 || Auth::user()->name == $inquiry->seller || Auth::user()->role->name == 'reporter' || Auth::user()->role->name == 'editor')
                                                 <td>{{$inquiry->industry}}</td>
                                                 <td>{{$inquiry->address}}</td>
                                                 <td>{{$inquiry->website}}</td>
@@ -139,6 +120,7 @@
                                                 <td>{{$inquiry->description}}</td>
                                                 <td>{{$inquiry->created_at->diffForHumans()}}</td>
                                                 <td>{{$inquiry->updated_at->diffForHumans()}}</td>
+                                                @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'editor' || Auth::user()->role->name == 'reporter' || Auth::user()->name == $inquiry->seller)
                                                 <td>
                                                     <a href="{{ route('inquiry.edit', $inquiry->id)}}"
                                                        type="button"
@@ -164,6 +146,8 @@
                                                        id="inquiriesEditBtn">
                                                         <i class="ft-edit"></i>
                                                     </a>
+                                                @endif
+                                                    @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'editor')
                                                     <button type="button"
                                                             class="btn btn-icon btn-bg-gradient-x-purple-red mr-1 shadow-lg shadow-lg"
                                                             data-inquiryid="{{$inquiry->id}}"
@@ -172,7 +156,10 @@
                                                             data-target="#deleteInquiry_confirm">
                                                         <i class="ft-trash"></i>
                                                     </button>
+                                                    @endif
+                                                 @endif
                                                 </td>
+                                                @endif
                                             </tr>
                                             @include('admin.inquiry.edit_inquiry')
                                             @include('admin.inquiry.deleteInquiry_confirm')

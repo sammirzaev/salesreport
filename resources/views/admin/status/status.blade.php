@@ -23,10 +23,12 @@
                         </div>
                     </div>
                     <div class="card-content collapse show">
+                        @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'editor')
                         <div class="card-body">
                             <button type="button" class="btn btn-icon btn-bg-gradient-x-purple-red mr-1 shadow-lg toggle"><i class="ft-star"></i></button>
                             @include('admin.status.add_status')
                         </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class="thead-dark">
@@ -46,6 +48,7 @@
                                             <td>{{$status->name}}</td>
                                             <td>{{$status->created_at->diffForHumans()}}</td>
                                             <td>{{$status->updated_at->diffForHumans()}}</td>
+                                            @if(Auth::user()->role_id == 1 || Auth::user()->role->name == 'editor')
                                             <td>
                                                 <a href="{{ route('status.edit', $status->id)}}"
                                                    type="button"
@@ -67,6 +70,7 @@
                                                     <i class="ft-trash"></i>
                                                 </button>
                                             </td>
+                                             @endif
                                         </tr>
                                         @include('admin.status.edit_status')
                                         @include('admin.status.deleteStatus_confirm')

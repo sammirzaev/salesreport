@@ -53,6 +53,14 @@ class User extends Authenticatable
         {
             return true;
         }
+        if($this->role['name'] == 'seller' && $this->is_active == 1)
+        {
+            return true;
+        }
+        if($this->role['name'] == 'reporter' && $this->is_active == 1)
+        {
+            return true;
+        }
 
         return false;
     }

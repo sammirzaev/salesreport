@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('auth.login');
 });
-
 Route::group(['middleware'=>'admin'], function() {
     Route::get('/admin', 'AdminController@index')->name('admin');
     Route::resource('/admin/users', 'UserController');
@@ -33,6 +32,7 @@ Route::group(['middleware'=>'admin'], function() {
     Route::get('/admin/weeklyReports', 'ReportsController@weeklyReports')->name('weekly_report');
     Route::get('/admin/seller', 'ReportsController@seller')->name('seller');
     Route::get('/admin/monthlyReports', 'ReportsController@monthlyReports')->name('monthly_report');
+    Route::get('admin/audits', 'AuditController@index')->name('audit');
 });
 
 Auth::routes();

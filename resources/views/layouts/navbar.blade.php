@@ -13,7 +13,7 @@
                                 <form>
                                     <div class="input-group search-box">
                                         <div class="position-relative has-icon-right full-width">
-                                            <input class="form-control" id="search" type="text" placeholder="Search here...">
+                                            <input class="form-control" id="search" name="search" value="{{isset($search) ? $search : ''}}" type="text" placeholder="Search here...">
                                             <div class="form-control-position navbar-search-close"><i class="ft-x">   </i></div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
             <li class="{{ Route::currentRouteName() === 'admin' ? 'active' : '' }}">
                 <a href="{{route('admin')}}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
             </li>
-            @if(Auth::user()->role_id == 1)
+            @if(Auth::user()->role->name == 'administrator')
             <li class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }} nav-item">
                 <a href="{{route('users.index')}}"><i class="la la-user-secret"></i><span class="menu-title" data-i18n="">Users</span></a>
             </li>
@@ -84,6 +84,7 @@
             <li class="{{ Route::currentRouteName() === 'inquiry.index' ? 'active' : '' }} nav-item">
                 <a href="{{route('inquiry.index')}}"><i class="la la-fire"></i><span class="menu-title" data-i18n="">Inquiry</span></a>
             </li>
+            @if(Auth::user()->role->name == 'administrator' || Auth::user()->role->name == 'editor')
             <li class="{{ Route::currentRouteName() === 'inquirytype.index' ? 'active' : '' }} nav-item">
                 <a href="{{route('inquirytype.index')}}"><i class="la la-folder-open-o"></i><span class="menu-title" data-i18n="">Inquiry Type Charts</span></a>
             </li>
@@ -103,6 +104,10 @@
                     </li>
                 </ul>
             </li>
+                <li class="{{ Route::currentRouteName() === 'audit' ? 'active' : '' }} nav-item">
+                    <a href="{{route('audit')}}"><i class="la la-dropbox"></i><span class="menu-title" data-i18n="">Audits</span></a>
+                </li>
+             @endif
          </ul>
     </div>
     <div class="navigation-background"></div>
