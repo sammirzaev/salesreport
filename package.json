@@ -24,7 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "bootstrap-table": "^1.16.0",
+        "bootstrap-table": "^1.20.2",
         "tableexport.jquery.plugin": "^1.10.16"
     }
 }
